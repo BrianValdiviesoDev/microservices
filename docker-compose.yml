@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  ironman:
+    build:
+      context: ./express-api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - APP_NAME=Ironman
+    networks:
+      - avengers
+
+  captain-america:
+    build:
+      context: ./express-api
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - APP_NAME=Captain América
+    networks:
+      - avengers
+
+  thor:
+    container_name: thor
+    build:
+      context: ./express-api
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - APP_NAME=Thor
+    networks:
+      - avengers
+
+  hulk:
+    build:
+      context: ./react-front
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - VITE_APP_PORT=3003
+      - VITE_APP_NAME=Hulk
+      - VITE_API_URL=http://127.0.0.1:3000/whoareyou
+    networks:
+      - avengers
+
+  dr-strange:
+    build:
+      context: ./react-front
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    environment:
+      - VITE_APP_PORT=3004
+      - VITE_APP_NAME=Dr. Strange
+      - VITE_API_URL=http://ironman:3002/whoareyou
+    networks:
+      - avengers
+
+networks:
+  avengers:
+    driver: bridge
