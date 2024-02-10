@@ -37,3 +37,15 @@ Kong is an API gateway that uses PostgreSQL to store all the information.
 [Info](https://docs.konghq.com/gateway/latest/admin-api/)
 
 [DOCS](https://docs.konghq.com/gateway/api/admin-oss/latest/)
+
+### Run only Kong service in Docker
+
+```bash
+docker compose -f docker-compose-kong.yml up -d
+```
+
+### Run quickstart script with GUI
+
+```bash
+./kong-start.sh
+```
