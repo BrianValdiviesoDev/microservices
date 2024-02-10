@@ -29,3 +29,9 @@ __VITE_APP_NAME__: a name to print in H1.
 __VITE_APP_PORT__: the port to listen.
 
 __VITE_API_URL__: a URL to check connection in a `GET` request
+
+
+## Keycloak
+
+[Guide](https://www.keycloak.org/getting-started/getting-started-docker)
+
