@@ -64,6 +64,20 @@ services:
     networks:
       - avengers
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - ironman
+      - captain-america
+      - thor
+      - hulk
+      - dr-strange
+    networks:
+      - avengers
 networks:
   avengers:
     driver: bridge

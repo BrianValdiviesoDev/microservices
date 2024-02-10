@@ -29,3 +29,27 @@ __VITE_APP_NAME__: a name to print in H1.
 __VITE_APP_PORT__: the port to listen.
 
 __VITE_API_URL__: a URL to check connection in a `GET` request
+
+
+## Nginx Proxy Manager
+You can start a Nginx UI with the docker compose
+
+### Quick start
+
+First start all containers
+```bash
+docker compose -f docker-compose-nginx.yml up -d
+```
+
+It should build three dockers:
+- Nginx: nginx service
+- Nginx Manager: web interface to manage nginx
+- MariaDB: database to store all the manager configurations
+
+You can access to the interface by:
+
+[Nginx Manager](http://localhost:83)
+
+User: admin@example.com
+
+Password: changeme
