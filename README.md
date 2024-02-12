@@ -49,3 +49,47 @@ docker compose -f docker-compose-kong.yml up -d
 ```bash
 ./kong-start.sh
 ```
+
+
+### Setting Up Kong with microservices
+
+First create the API service
+[Docs](https://docs.konghq.com/gateway/api/admin-oss/latest/#/Services/create-service)
+
+```bash
+curl -i -X POST --url http://localhost:8001/services/ --data 'name=service1' --data 'url=http://localhost:3001'
+```
+url: Kong admin url
+
+data.url: url to your api service
+
+
+Create routes to the API service
+[Docs](https://docs.konghq.com/gateway/api/admin-oss/latest/#/Routes/create-route-for-service)
+
+```bash
+curl -i -X POST --url http://localhost:8001/services/service1/routes --data 'paths[]=/service1'
+```
+
+url: Kong admin url. "service1" is the name of your service.
+
+data.paths[]: the path that you want to use as root to redirect to your service.
+
+__TEST__: [http://localhost:8000/service1](http://localhost:8000/service1)
+
+
+## Protected routes
+### Add JWT
+Add JWT plugin to the service
+```bash
+curl -i -X POST --url http://localhost:8001/services/service1/plugins/ --data 'name=jwt' --data 'config.claims_to_verify=exp' --data 'config.header_names=Authorization'
+```
+
+### Add CORS
+Add CORS plugin to the service
+```bash
+curl -i -X POST --url http://localhost:8001/services/service1/plugins/ --data 'name=cors' --data 'config.exposed_headers=Authorization' --data 'config.credentials=true' --data 'config.methods=GET' --data 'config.headers=Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Authorization'
+```
+
+
+
