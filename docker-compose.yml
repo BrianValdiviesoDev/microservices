@@ -47,7 +47,7 @@ services:
     environment:
       - VITE_APP_PORT=3003
       - VITE_APP_NAME=Hulk
-      - VITE_API_URL=http://127.0.0.1:3000/whoareyou
+      - VITE_API_URL=http://127.0.0.1:3000
     networks:
       - avengers
 
@@ -60,7 +60,7 @@ services:
     environment:
       - VITE_APP_PORT=3004
       - VITE_APP_NAME=Dr. Strange
-      - VITE_API_URL=http://ironman:3002/whoareyou
+      - VITE_API_URL=http://ironman:3002
     networks:
       - avengers
 

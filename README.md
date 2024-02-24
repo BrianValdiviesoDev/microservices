@@ -16,6 +16,8 @@ __APP_NAME__: a name to return in endpoint. It`s only for differentiate from oth
 
 __PORT__: the port to listen.
 
+__AUTH0_DOMAIN__: domain of auth0 application where token is generated with https://
+
 ### Front
 Builded in React + Vite in TypeScript.
 
@@ -29,3 +31,9 @@ __VITE_APP_NAME__: a name to print in H1.
 __VITE_APP_PORT__: the port to listen.
 
 __VITE_API_URL__: a URL to check connection in a `GET` request
+
+__VITE_AUTH0_DOMAIN__: domain of auth0 application with https://
+
+__VITE_AUTH0_CLIENT_ID__: client id of auth0 application
+
+__VITE_AUTH0_AUDIENCE__: identifier of auth0 API
