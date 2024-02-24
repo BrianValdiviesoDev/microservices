@@ -1,0 +1,48 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  ironman:
+    host: localhost
+    paths: '/ironman*'
+  captain-america:
+    host: localhost
+    paths: '/captain-america*'
+serviceEndpoints:
+  ironman:
+    url: 'http://localhost:3000'
+  captain-america:
+    url: 'http://localhost:3001'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  ironmanPipeline:
+    apiEndpoints:
+      - ironman
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: ironman 
+              prependPath: true
+              ignorePath: false
+              stripPath: true
+
+  captain-americaPipeline:
+    apiEndpoints:
+      - captain-america
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: captain-america 
+              prependPath: true
+              ignorePath: false
+              stripPath: true
